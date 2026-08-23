@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 # counts ALL processes of the user, not just this subtree, so it must clear
 # the baseline process count of a busy host (e.g. a developer machine).
 _SCRAPE_CPU_LIMIT_SECONDS = 120
-_SCRAPE_MEMORY_LIMIT_MB = 4096
+_SCRAPE_MEMORY_LIMIT_MB = None
 _SCRAPE_FSIZE_LIMIT_MB = 256
 _SCRAPE_NPROC_LIMIT = 4096
 

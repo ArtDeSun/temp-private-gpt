@@ -1865,15 +1865,15 @@ wheels = [
 
 [[package]]
 name = "llama-index-llms-openai"
-version = "0.7.7"
+version = "0.7.10"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "llama-index-core" },
     { name = "openai" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e3/38/3d55e9f9af237df6c92e75b824ad85039d6dac386237b519b0dab619288c/llama_index_llms_openai-0.7.7.tar.gz", hash = "sha256:ae9d6fa5ff1982e218d404c328b883a276c12374e1b12d81101ac254cbe569d1", size = 27474, upload-time = "2026-04-28T19:09:34.224Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/74/6e/1ef83a852296c55fe8c529b4476073eccaff150d57aceb3d6319a87dcc89/llama_index_llms_openai-0.7.10.tar.gz", hash = "sha256:aa8dabf08ea0b9740fc9dae9677f05049254be5e929794a886692eaf26973def", size = 27586, upload-time = "2026-07-21T23:16:18.087Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/33/66/fc6818ea699c8cfd0ae780a1c0f04389458bab8a895ac5ff17bfc47e7559/llama_index_llms_openai-0.7.7-py3-none-any.whl", hash = "sha256:d7ee68235d2a86c249d7f22e8608aac9425c14ae894140e70498db9aa3b376b5", size = 28544, upload-time = "2026-04-28T19:09:35.096Z" },
+    { url = "https://files.pythonhosted.org/packages/8b/89/854cb7b2e5be3b3c16561e93f3edd52d8a1b6e031be1aca4519b9fdd3917/llama_index_llms_openai-0.7.10-py3-none-any.whl", hash = "sha256:b76a0c3d4aaa9aba57dc0366ca6b2346c6819bed22973e334676d7a34704e46a", size = 28673, upload-time = "2026-07-21T23:16:17.062Z" },
 ]
 
 [[package]]
@@ -3179,7 +3179,9 @@ dependencies = [
     { name = "llama-index-core" },
     { name = "nest-asyncio" },
     { name = "nltk" },
+    { name = "pandas" },
     { name = "partial-json-parser" },
+    { name = "python-magic" },
     { name = "python-multipart" },
     { name = "pyyaml" },
     { name = "requests" },
@@ -3628,6 +3630,7 @@ requires-dist = [
     { name = "opentelemetry-proto", marker = "extra == 'observability-arize-phoenix'", specifier = ">=1.41.0,<2" },
     { name = "opentelemetry-sdk", marker = "extra == 'observability-arize-phoenix'", specifier = ">=1.41.0,<2" },
     { name = "opik", marker = "extra == 'observability-opik'", specifier = ">=2.0.21,<3" },
+    { name = "pandas", specifier = ">=2.3.3" },
     { name = "pandas", marker = "extra == 'data-pandas'", specifier = ">=2.2.3,<3" },
     { name = "pandas-stubs", marker = "extra == 'typecheck'", specifier = ">=2.2.3.241009,<3" },
     { name = "pandasai", marker = "extra == 'data-pandasai'", specifier = ">=3.0.0" },
@@ -3680,6 +3683,7 @@ requires-dist = [
     { name = "pytest-cov", marker = "extra == 'test'", specifier = ">=7,<8" },
     { name = "pytest-httpx", marker = "extra == 'test'", specifier = ">=0.36.0" },
     { name = "pytest-xdist", marker = "extra == 'test'", specifier = ">=3.6.1" },
+    { name = "python-magic", specifier = ">=0.4.27" },
     { name = "python-magic", marker = "extra == 'ingest-core'", specifier = ">=0.4.27,<0.5" },
     { name = "python-multipart", specifier = ">=0.0.26" },
     { name = "python-pptx", marker = "extra == 'ingest-documents'", specifier = ">=1.0.2,<2" },

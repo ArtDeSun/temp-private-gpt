@@ -152,8 +152,8 @@ class BaseArtifactIndex(abc.ABC):
                 ),
             )
             return ArtifactIndexStatus(index.summary)
-        except ValueError:
-            return ArtifactIndexStatus.NOT_INITIALIZED
+        except ValueError as e:
+            return e
 
     async def astatus(self) -> ArtifactIndexStatus:
         """Gets the status of the Index."""

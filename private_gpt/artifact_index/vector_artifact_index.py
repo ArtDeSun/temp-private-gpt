@@ -63,8 +63,27 @@ class VectorArtifactIndex(BaseArtifactIndex):
                 vector_store=self.vector_store_component.vector_store(self.collection),
                 index_store=self.node_store_component.index_store(self.collection),
             ),
+            embed_model=self.embedding_component.get_embed(self.embed_model_id),
             **self._vector_kwargs,
         )
+
+    def status(self) -> ArtifactIndexStatus:
+        try:
+            index = load_index_from_storage(
+                index_id=self.index_id(),
+                storage_context=StorageContext.from_defaults(
+                    vector_store=self.vector_store_component.vector_store(
+                        self.collection
+                    ),
+                    index_store=self.node_store_component.index_store(
+                        self.collection
+                    ),
+                ),
+                embed_model=self.embedding_component.get_embed(self.embed_model_id),
+            )
+            return ArtifactIndexStatus(index.summary)
+        except ValueError:
+            return ArtifactIndexStatus.NOT_INITIALIZED
 
     def index_id(self) -> str:
         return self.index_id_from_artifact(self.artifact)
@@ -101,6 +120,7 @@ class VectorArtifactIndex(BaseArtifactIndex):
                     ),
                     index_store=self.node_store_component.index_store(self.collection),
                 ),
+                embed_model=self.embedding_component.get_embed(self.embed_model_id),
                 **self._vector_kwargs,
             )
 

@@ -42,7 +42,7 @@ server:
 
 data:
   local_ingestion:
-    enabled: ${LOCAL_INGESTION_ENABLED:false}
+    enabled: ${LOCAL_INGESTION_ENABLED:true}
     allow_ingest_from: ["*"]
   local_data_folder: ${PGPT_LOCAL_DATA_FOLDER:local_data/private_gpt}
   reader: ${PGPT_DATA_READER:auto}

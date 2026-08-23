@@ -73,7 +73,11 @@ async def _scrape(config: dict[str, Any]) -> None:
     timeout_ms = float(config["timeout_seconds"]) * 1000
     results: list[dict[str, Any]] = []
     async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch(headless=True, args=_BROWSER_ARGS)
+        browser = await playwright.chromium.launch(
+            headless=True,
+            channel="chromium",
+            args=["--no-sandbox"],
+        )
         try:
             context = await browser.new_context(**_context_options(config))
             context.set_default_timeout(timeout_ms)

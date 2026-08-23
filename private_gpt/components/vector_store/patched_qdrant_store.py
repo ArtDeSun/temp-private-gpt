@@ -881,14 +881,19 @@ class PatchedQdrantVectorStore(QdrantVectorStore):
                 shard_key_selector=shard_key_selector,
             )
 
-        executor = self.executor(max_workers=min(self.parallel, len(batches)))
-        if executor is None:
+        if isinstance(self._client._client, QdrantLocal):
             for batch in batches:
                 upload(batch)
         else:
-            list(executor.map(upload, batches))
-        return ids
+            executor = self.executor(max_workers=min(self.parallel, len(batches)))
+            if executor is None:
+                for batch in batches:
+                    upload(batch)
+            else:
+                list(executor.map(upload, batches))
 
+        return ids
+	
     @retry(is_async=True, tries=_MAX_RETRIES, jitter=_JITTER, logger=logger)
     async def async_add(self, nodes: list[BaseNode], **kwargs: Any) -> list[str]:
         """Add nodes with bounded async upload consumers."""

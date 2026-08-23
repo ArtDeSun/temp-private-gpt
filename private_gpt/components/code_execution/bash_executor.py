@@ -17,7 +17,12 @@ if TYPE_CHECKING:
 _ISOLATION_AVAILABLE = sys.platform != "win32"
 
 
-def _child_setup(cpu_s: int, mem_mb: int, fsize_mb: int, nproc: int) -> None:
+def _child_setup(
+    cpu_s: int,
+    mem_mb: int | None,
+    fsize_mb: int,
+    nproc: int,
+) -> None:
     """Runs in child process before exec — sets up isolation via rlimit + setsid.
 
     setrlimit calls are best-effort: some platforms (macOS) reject certain
@@ -31,7 +36,8 @@ def _child_setup(cpu_s: int, mem_mb: int, fsize_mb: int, nproc: int) -> None:
             r.setrlimit(which, limit)
 
     _set(r.RLIMIT_CPU, (cpu_s, cpu_s))
-    _set(r.RLIMIT_AS, (mem_mb << 20, mem_mb << 20))
+    if mem_mb is not None:
+        _set(r.RLIMIT_AS, (mem_mb << 20, mem_mb << 20))
     _set(r.RLIMIT_FSIZE, (fsize_mb << 20, fsize_mb << 20))
     _set(r.RLIMIT_NPROC, (nproc, nproc))
 
@@ -57,7 +63,7 @@ class LocalBashExecutor:
     def __init__(
         self,
         cpu_limit_seconds: int = 30,
-        memory_limit_mb: int = 512,
+        memory_limit_mb: int | None = 512,
         fsize_limit_mb: int = 50,
         nproc_limit: int = 50,
         output_cap_bytes: int = 10 * 1024 * 1024,

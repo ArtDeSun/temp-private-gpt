@@ -89,6 +89,12 @@ def should_ignore_mime_mismatch(guest_mime: str, actual_mime: str) -> bool:
         frozenset({"application/json", "text/plain"}),
         frozenset({"application/javascript", "text/plain"}),
         frozenset({"application/x-javascript", "text/plain"}),
+
+        frozenset({"text/javascript", "application/javascript"}),
+        frozenset({"text/vnd.trolltech.linguist", "application/javascript"}),
+        frozenset({"text/vnd.trolltech.linguist", "text/plain"}),
+        frozenset({"text/vnd.trolltech.linguist", "text/x-c"}),
+
         frozenset({"message/rfc822", "text/plain"}),
         frozenset({"application/x-appleworks3", "text/plain"}),
         # HTML can contains other types inline, making very difficult to detect
@@ -98,6 +104,8 @@ def should_ignore_mime_mismatch(guest_mime: str, actual_mime: str) -> bool:
         frozenset({"text/html", "text/xml"}),
         frozenset({"text/html", "application/xml"}),
         frozenset({"text/html", "text/css"}),
+
+        frozenset({"text/css", "text/plain"}),
         # Microsoft Word documents
         frozenset(
             {

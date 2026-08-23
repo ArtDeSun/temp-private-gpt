@@ -1221,11 +1221,14 @@ class AsyncChatEngine:
                             existing = []
                         by_id = {}
                         for tc in existing:
-                            if tc.tool_id:
-                                by_id[tc.tool_id] = tc
+                            tool_id = getattr(tc, "tool_id", None) or getattr(tc, "id", None)
+                            if tool_id:
+                                by_id[tool_id] = tc
+
                         for tc in value:
-                            if tc.tool_id:
-                                by_id[tc.tool_id] = tc
+                            tool_id = getattr(tc, "tool_id", None) or getattr(tc, "id", None)
+                            if tool_id:
+                                by_id[tool_id] = tc
                         assistant_message.additional_kwargs["tool_calls"] = list(
                             by_id.values()
                         )
